@@ -22,3 +22,10 @@ Useful commands:
  play update-classifiers - downloads sources and javadoc for 3rd party libs
  
 3) Setup mongodb
+Install MongoDB and run mongo server via "mongod" (http://docs.mongodb.org/manual/).
+Run the scripts from db_scripts folder sequentially. 
+You can run a script either by running "mongo" and then pasting the contents of the file
+or by running "mongo path_to_the_file/name_of_the_file.js". After that the setup for the 
+application is complete.
+
+The application uses MongoDB Java Driver (https://github.com/mongodb/mongo-java-driver).

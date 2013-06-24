@@ -27,6 +27,11 @@ public class ConfigurationAccess {
 	 * The twitter access secret property key.
 	 */
 	private static final String TWITTER_APP_ACCESS_TOKEN_SECRET = "twitter.app.accesstokensecret";
+	
+	/**
+	 * The name of the application database.
+	 */
+	private static final String DB_NAME = "database.name";
 
 	/**
 	 * Retrieves the value of the application key property.
@@ -56,5 +61,13 @@ public class ConfigurationAccess {
 	public static String getAccessTokenSecret() {
 		return Play.application().configuration()
 				.getString(TWITTER_APP_ACCESS_TOKEN_SECRET);
+	}
+	
+	/**
+	 * Retrieves name of the application database.
+	 */
+	public static String getDBName() {
+		return Play.application().configuration()
+				.getString(DB_NAME);
 	}
 }

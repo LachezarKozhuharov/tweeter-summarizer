@@ -1,15 +1,15 @@
 package model;
 
-import model.tweeterclient.PersistTweetCallback;
-import model.tweeterclient.TweetCallback;
-import model.tweeterclient.TweeterClient;
+import model.twitterclient.PersistTweetCallback;
+import model.twitterclient.TweetCallback;
+import model.twitterclient.TwitterClient;
 
 public class TweetCollector implements Runnable {
 
 	@Override
 	public void run() {
 		TweetCallback persistTweetCallback = new PersistTweetCallback();
-		TweeterClient tweeterClient = new TweeterClient();
+		TwitterClient tweeterClient = new TwitterClient();
 
 		tweeterClient.startClient(persistTweetCallback);
 	}

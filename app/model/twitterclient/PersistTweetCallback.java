@@ -1,4 +1,4 @@
-package model.tweeterclient;
+package model.twitterclient;
 
 import model.persistance.DbClient;
 

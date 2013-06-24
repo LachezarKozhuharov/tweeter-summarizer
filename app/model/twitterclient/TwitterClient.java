@@ -1,4 +1,4 @@
-package model.tweeterclient;
+package model.twitterclient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import com.google.api.client.auth.oauth.OAuthHmacSigner;
 import com.google.api.client.auth.oauth.OAuthParameters;
 import com.google.api.client.http.GenericUrl;
 
-public class TweeterClient {
+public class TwitterClient {
 
 	private static final String STREAMING_API_URI = "https://stream.twitter.com/1.1/statuses/sample.json?language=en";
 	private static final String OAUTH_VERSION_10 = "1.0";

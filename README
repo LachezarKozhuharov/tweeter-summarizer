@@ -1,4 +1,24 @@
-This is your new Play 2.1 application
-=====================================
+Twitter Summarizer
 
-This file will be packaged with your application, when using `play dist`.
+Information retrieval university project
+
+===================== SETUP =====================
+
+1) Setup configuration files
+Fill the blank properties in conf/application.conf. To create new application
+go to https://dev.twitter.com/apps ,create new app and access token. Copy 
+the consumer key, consumer secret, access token and access token secret values
+to twitter.app.key, twitter.app.secret, twitter.app.accesstoken,
+twitter.app.accesstokensecret.
+
+2) Setup play framework
+Follow the instruction from http://www.playframework.com/
+
+Useful commands:
+ play eclipse - to generate project files
+ play run - to compile the project and start a server with the application 
+  listening at port 9000
+ play debug run - same as above but starts the application in debug mode
+ play update-classifiers - downloads sources and javadoc for 3rd party libs
+ 
+3) Setup mongodb

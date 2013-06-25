@@ -1,7 +1,4 @@
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import model.TweetCollector;
+import model.TweetCollectorScheduler;
 import play.Application;
 import play.GlobalSettings;
 
@@ -9,7 +6,7 @@ public class Global extends GlobalSettings {
 	@Override
 	public void onStart(Application app) {
 		super.onStart(app);
-		Executor executor = Executors.newSingleThreadExecutor();
-		executor.execute(new TweetCollector());
+		TweetCollectorScheduler collector = new TweetCollectorScheduler();
+		collector.start();
 	}
 }

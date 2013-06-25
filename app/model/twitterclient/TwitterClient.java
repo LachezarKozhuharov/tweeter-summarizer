@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
 
 import model.common.ConfigurationAccess;
 
@@ -50,8 +51,13 @@ public class TwitterClient {
 		}
 	}
 
-	public void filterStatusesStreaming(TweetCallback callback, String track)
-			throws UnsupportedEncodingException {
+	public void filterStatusesStreaming(TweetCallback callback, String track,
+			long listenPeriod) throws UnsupportedEncodingException {
+		//TODO use http timeouts
+		
+		long startTime = System.currentTimeMillis();
+		long endTime = startTime + listenPeriod;
+
 		HttpClient httpclient = new DefaultHttpClient();
 		String uri = TwitterApiUrls.Streaming.FILTER_STATUSES;
 
@@ -61,8 +67,6 @@ public class TwitterClient {
 		pairs.add(new BasicNameValuePair("track", track));
 		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(pairs, "UTF-8");
 
-		// StringEntity postEntity = new StringEntity("track=" + track,
-		// "UTF-8");
 		httpPost.setEntity(entity);
 		System.out.println(httpPost.getMethod() + "  " + uri);
 		String authToken = getAuthorizationHeader(httpPost.getMethod(), uri,
@@ -77,8 +81,10 @@ public class TwitterClient {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			String line;
 			while ((line = br.readLine()) != null) {
-				System.out.println("new.." + line);
-				// callback.onTweet(line);
+				callback.onTweet(line);
+				if (System.currentTimeMillis() > endTime) {
+					return;
+				}
 			}
 		} catch (IOException e) {
 			httpPost.releaseConnection();
@@ -109,7 +115,7 @@ public class TwitterClient {
 		return null;
 	}
 
-	public String getPlaceTrends(String woeid) {
+	public List<String> getPlaceTrends(String woeid) {
 		HttpClient httpclient = new DefaultHttpClient();
 		String url = TwitterApiUrls.Rest.PLACE_TRENDS + "?id=" + woeid;
 		HttpGet httpGet = new HttpGet(url);
@@ -123,8 +129,9 @@ public class TwitterClient {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			String line;
 			while ((line = br.readLine()) != null) {
-				System.out.println(line);
-				return line;
+
+				//TODO parse result and return proper value
+				return null;
 			}
 		} catch (IOException e) {
 			httpGet.releaseConnection();

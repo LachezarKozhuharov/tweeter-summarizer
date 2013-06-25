@@ -11,6 +11,6 @@ public class TweetCollector implements Runnable {
 		TweetCallback persistTweetCallback = new PersistTweetCallback();
 		TwitterClient tweeterClient = new TwitterClient();
 
-		tweeterClient.startClient(persistTweetCallback);
+		tweeterClient.sampleStatusesStreaming(persistTweetCallback);
 	}
 }

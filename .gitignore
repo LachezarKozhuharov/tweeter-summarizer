@@ -2,7 +2,7 @@ logs
 project/project
 project/target
 target
-conf/application.conf.real
+conf/application.conf
 tmp
 .history
 dist
